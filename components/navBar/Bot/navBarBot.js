@@ -17,8 +17,8 @@ const MainStack = createNativeStackNavigator();
 function MainStackScreen() {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen name="Story" component={StoryScreen} options={{ headerShown: false }} />
-      <MainStack.Screen name="StoryDetail" component={StoryDetailScreen} />
+      <MainStack.Screen name="Home" component={StoryScreen} options={{  headerShown: true, headerStyle: { backgroundColor: "#d8a7a9"}, }} />
+      <MainStack.Screen name="StoryDetail" component={StoryDetailScreen} options={{ headerShown: true, headerStyle: { backgroundColor: "#d8a7a9"}, }}/>
     </MainStack.Navigator>
   );
 }
@@ -44,9 +44,10 @@ export const NavBarBot = () => {
           tabBarStyle: { backgroundColor: "#d8a7a9" },
         }} initialRouteName="Home">
 
-        <Tab.Screen name="Home" component={MainStackScreen} options={{
+        <Tab.Screen name="Main" component={MainStackScreen} options={{
           tabBarIcon: ({ color }) => <Ionicons name="library-sharp" size={20} color={color} />,
-          headerStyle: { backgroundColor: "#d8a7a9"},
+          tabBarLabel: "Home",
+          headerShown: false,
         }} />
         <Tab.Screen name="Start Your Adventure!" component={AdventureStackScreen} options={{
           tabBarLabel: "Adventure",
