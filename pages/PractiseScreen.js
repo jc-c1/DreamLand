@@ -19,7 +19,7 @@ function PractiseScreen() {
   const clickHandler = () => {
     if (name && age && theme) {
       // render the new component
-      navigation.navigate("Background", { name, age, theme });
+      navigation.navigate("Background", { name: name, age: age, theme: theme });
     }
   };
 
