@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
-import { collection, query, where, getDocs } from 'firebase/firestore'; // Make sure all these are imported
-import { db } from '../config/firebase.js'; // Check this path is correct as per your project structure
-
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
+import { collection, query, where, getDocs } from "firebase/firestore"; // Make sure all these are imported
+import { db } from "../config/firebase.js"; // Check this path is correct as per your project structure
 
 function StoryDetailScreen({ route }) {
   const [storyDetails, setStoryDetails] = useState({});
   const storyTitle = route.params.storyTitle; // Get the story title passed through navigation
   const backgroundImage = route.params.backgroundImage;
-  
+
   useEffect(() => {
     const fetchStoryDetails = async () => {
-      const q = query(collection(db, "stories"), where("Title", "==", storyTitle));
+      const q = query(
+        collection(db, "stories"),
+        where("Title", "==", storyTitle)
+      );
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -29,10 +37,10 @@ function StoryDetailScreen({ route }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.bgImage}>
-      <Text style={styles.title}>{storyDetails.Title}</Text> 
-      <ScrollView style={styles.fullText}>
-      <Text style={styles.description}>{storyDetails.story}</Text> 
-      </ScrollView>
+        <Text style={styles.title}>{storyDetails.Title}</Text>
+        <ScrollView style={styles.fullText}>
+          <Text style={styles.description}>{storyDetails.story}</Text>
+        </ScrollView>
       </ImageBackground>
     </View>
   );
@@ -42,18 +50,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 0,
-    backgroundColor: '#101820',
+    backgroundColor: "#101820",
   },
   title: {
-    fontSize: 48,
-    fontWeight: 'bold',
+    fontSize: 24,
+    fontWeight: "bold",
     marginBottom: 5,
     marginTop: -80,
-    textAlign: 'center',
+    textAlign: "center",
   },
   description: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   bgImage: {
     flex: 1,
@@ -62,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   fullText: {
-    backgroundColor: 'rgba(255,255,255,0.6)', // Semi-translucent black background
+    backgroundColor: "rgba(255,255,255,0.6)", // Semi-translucent black background
     borderRadius: 15, // Rounded edges
     padding: 20, // Padding for content inside the box
     margin: -80, // Margin around the box

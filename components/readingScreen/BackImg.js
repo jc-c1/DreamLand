@@ -54,10 +54,10 @@ const BackImg = ({ route }) => {
   }, []);
 
   const base64ImageUri = `data:image/png;base64,${background}`;
+
   if (isLoading) {
     return (
       <ImageBackground
-        source={images.loading}
         style={styles.backgroundImage}
         resizeMode="cover"
       ></ImageBackground>
