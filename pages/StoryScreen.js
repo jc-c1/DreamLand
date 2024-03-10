@@ -1,65 +1,58 @@
 // StoryScreen.js
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, ScrollView, View, FlatList } from 'react-native';
+import { Button, StyleSheet, Text, View, FlatList, Image } from 'react-native';
+import images from '../assets/Img/images';
 
 function StoryScreen() {
   const [categories, setCategories] = useState([
     {
       genre: 'Adventure',
       stories: [
-        {name: 'The Great Expedition', key: '1'},
-        {name: 'The Golden Treasure Quest', key: '2'},
-        {name: 'Pirate Passage', key: '3'},
-        {name: 'The Rugged Ridge Riders', key: '4'},
-        {name: 'The Amazing Race', key: '5'},
-        {name: 'Daring Danger Derring-Do', key: '6'},
+        {name: 'The Great Expedition', key: '1', image:images.pink},
+        {name: 'The Golden Treasure Quest', key: '2', image:images.treasure},
+        {name: 'Pirate Passage', key: '3', image:images.pirate},
+        {name: 'The Rugged Ridge Riders', key: '4', image:images.forest},
       ],
     },
     {
       genre: 'Mystery',
       stories: [
-        { name: 'WhoDUNNIT in the Secret Mansion?', key: '1' },
-        { name: 'The Super Sleuths', key: '2' },
-        { name: 'Mystery on the Orient Express', key: '3' },
-        { name: 'The Puzzle Palace', key: '4' },
-        { name: 'The Hidden Treasure Trail', key: '5' },
-        { name: 'A Phantom Feast', key: '6' },
-        { name: 'The Curious Crime College', key: '7' },
+        { name: 'WhoDUNNIT in the Secret Mansion?', key: '1', image:images.mansion},
+        { name: 'Mystery on the Orient Express', key: '3', image:images.train},
+        { name: 'The Hidden Attic', key: '5', image:images.attic},
       ],
     },
     {
       genre: 'Fantasy',
       stories: [
-        { name: 'The Enchanted Quest', key: '1' },
-        { name: 'The Faerie Forest Adventure', key: '2' },
-        { name: 'Dragon Friend Squad', key: '3' },
-        { name: 'The Spellbound Castle', key: '4' },
-        { name: 'Mystic Meadows', key: '5' },
-        { name: 'Sorcerers Apprentice', key: '6' },
-        { name: 'The Unicorn Kingdom', key: '7' },
+        { name: 'The Faerie Forest Adventure', key: '2', image:images.tree},
+        { name: 'The Spellbound Castle', key: '4', image:images.castle},
+        { name: 'Mystic Meadows', key: '5', image:images.river},
+        { name: 'The Unicorn Kingdom', key: '7', image:images.unicorn},
       ],
     },
-    {
-      genre: 'Sci-Fi',
-      stories: [
-        { name: 'Journey Beyond the Stars', key: '1' },
-        { name: 'The Quantum Paradox', key: '2' },
-        { name: 'Galactic Outlaws', key: '3' },
-      ],
-    },
-    {
-      genre: 'Childrennnn',
-      stories: [
-        { name: 'The Enchanted Balloon', key: '1' },
-        { name: 'Milos Monster Adventure', key: '2' },
-        { name: 'The Lost Penguin', key: '3' },
-      ],
-    },
+    // {
+    //   genre: 'Sci-Fi',
+    //   stories: [
+    //     { name: 'Journey Beyond the Stars', key: '1' },
+    //     { name: 'The Quantum Paradox', key: '2' },
+    //     { name: 'Galactic Outlaws', key: '3' },
+    //   ],
+    // },
+    // {
+    //   genre: 'Childrennnn',
+    //   stories: [
+    //     { name: 'The Enchanted Balloon', key: '1' },
+    //     { name: 'Milos Monster Adventure', key: '2' },
+    //     { name: 'The Lost Penguin', key: '3' },
+    //   ],
+    // },
   ])
 
   const renderStory = ({item}) => (
     <View style={styles.storyItem}>
+      <Image source={item.image} style={styles.storyImage} />
       <Text style={styles.storyText}>{item.name}</Text>
     </View>
   )
@@ -106,11 +99,13 @@ const styles = StyleSheet.create({
   storyText: {
     fontSize: 15,
     textAlign: 'center', 
-    fontWeight: '200'
+    fontWeight: '200',
+    color: '#d4dee6',
   },
   storyItem: {
     marginTop: 10,
     padding: 30,
+    paddingBottom:10,
     backgroundColor: '#547999',
     textAlign: 'center', 
     marginHorizontal: 10, // Add horizontal space between items
@@ -128,7 +123,13 @@ const styles = StyleSheet.create({
   },
   genreContainer: {
     marginTop:10,
-  }
+  },
+  storyImage: {
+    width: 140, // Adjust the width as needed
+    height: 140, // Adjust the height as needed
+    borderRadius: 10, // Optional: if you want rounded corners
+    marginBottom: 10, // Space between the image and the text
+  },
 });
 
 export default StoryScreen;
