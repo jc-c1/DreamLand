@@ -10,8 +10,8 @@ export default function navAuth() {
             <Stack.Navigator
             screenOptions={{
                 headerShown: false
-            }}>
-                {/* <Stack.Screen name="Wecome" component={}/>
+            }} initialRouteName="Welcome">
+                {/* <Stack.Screen name="Welcome" component={}/>
                 <Stack.Screen name="LogIn" component={}/>
                 <Stack.Screen name="SignUp" component={}/> */}
             </Stack.Navigator>
