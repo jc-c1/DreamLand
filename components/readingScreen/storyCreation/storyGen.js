@@ -1,10 +1,11 @@
 import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
+import { REACT_APP_COHERE_API_KEY } from "@env";
 
 import { CohereClient } from "cohere-ai";
 
 const cohere = new CohereClient({
-  token: REACT_NATIVE_COHERE_API_KEY,
+  token: REACT_APP_COHERE_API_KEY,
 });
 
 function parseResponse(response) {
