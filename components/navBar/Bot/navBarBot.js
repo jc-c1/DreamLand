@@ -7,7 +7,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
-export default function navBarBot() {
+export const NavBarBot = () => {
     return (
         <NavigationContainer>
             <Tab.Navigator

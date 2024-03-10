@@ -4,9 +4,8 @@ import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity,
 import { onAuthStateChanged
 } from "firebase/auth";
 
-
-
-import { LogIn } from "./logIn" 
+import { LogIn } from "./logIn" ;
+import {NavBarBot} from "../navBar/Bot/navBarBot"
 
 import { auth } from '../../config/firebase';
 
@@ -22,28 +21,30 @@ export const Auth = () => {
         return () => unsubscribe();
     }, []);
 
+    const toAuth = () => {
+      return (
+        <TouchableWithoutFeedback onPress={handleOutsideClick}>
+          <SafeAreaView style={styles.totalcontainer}>
+            <View style={styles.totalcontainer}>
+              {page == "login" ? (
+                <LogIn setPage={setPage} />
+              ) : (
+                <SignUp setPage={setPage} />
+              )}
+            </View>
+          </SafeAreaView>
+        </TouchableWithoutFeedback>
+      )
+    }
+
+    
+
     const handleOutsideClick = () => {
         Keyboard.dismiss();
       }
-
         const [page, setPage] = useState("login");
       
-        return (
-          <TouchableWithoutFeedback onPress={handleOutsideClick}>
-            <SafeAreaView style={styles.totalcontainer}>
-              <View style={styles.totalcontainer}>
-                <Image
-                      style={styles.preview}
-                    />
-                {page == "login" ? (
-                  <LogIn setPage={setPage} />
-                ) : (
-                  <SignUp setPage={setPage} />
-                )}
-              </View>
-            </SafeAreaView>
-          </TouchableWithoutFeedback>
-        );
+        return (user ? <NavBarBot /> : toAuth());
     }
 
 const styles = StyleSheet.create({
@@ -52,11 +53,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
   totalcontainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    
+    backgroundColor: "#101820"
   },
   preview: {
     marginBottom: -300,
