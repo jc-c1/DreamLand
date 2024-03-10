@@ -27,8 +27,8 @@ const initializeStory = async (age, hero, themes) => {
     prompt: `Give a json file with the following fields only:\n
     story: beginning of the bedtime story for a ${age} years old child about the main character ${hero} and ${themes}.
     question: how should the protagonist continue?\n
-    option1: one possibility\n
-    option2: another possibility.`,
+    option1: give one possible choice protagonist can make\n
+    option2: give another possible choice.`,
     maxTokens: 300,
     temperature: 0.9,
     k: 0,
@@ -48,7 +48,7 @@ const contStory = async (story, prompt) => {
     prompt: `given this story: "${story.story}". Give a JSON file with the following fields only:\n
     story: write the next paragraph to the story:\n given that "${prompt}" happened next. Remove any duplicates sentences with the given story
     question: how should the protagonist continue?\n
-    option1: write one possible choice protagonist can mae\n
+    option1: write one possible choice protagonist can make\n
     option2: write another possible choice.`,
     maxTokens: 300,
     temperature: 0.9,
@@ -67,7 +67,7 @@ const endStory = async (story) => {
   }
   const response = await cohere.generate({
     model: "command",
-    prompt: `write a 2 paragraphs ending given this story: ${story}, story only do not comment`,
+    prompt: `write a 2 paragraphs ending to this story: ${story}, story only do not comment`,
     maxTokens: 300,
     temperature: 0.9,
     k: 0,
