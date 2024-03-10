@@ -15,30 +15,23 @@ function StoryScreen() {
         {name: 'The Rugged Ridge Riders', key: '4', image:images.forest},
       ],
     },
-    // {
-    //   genre: 'Mystery',
-    //   stories: [
-    //     { name: 'WhoDUNNIT in the Secret Mansion?', key: '1' },
-    //     { name: 'The Super Sleuths', key: '2' },
-    //     { name: 'Mystery on the Orient Express', key: '3' },
-    //     { name: 'The Puzzle Palace', key: '4' },
-    //     { name: 'The Hidden Treasure Trail', key: '5' },
-    //     { name: 'A Phantom Feast', key: '6' },
-    //     { name: 'The Curious Crime College', key: '7' },
-    //   ],
-    // },
-    // {
-    //   genre: 'Fantasy',
-    //   stories: [
-    //     { name: 'The Enchanted Quest', key: '1' },
-    //     { name: 'The Faerie Forest Adventure', key: '2' },
-    //     { name: 'Dragon Friend Squad', key: '3' },
-    //     { name: 'The Spellbound Castle', key: '4' },
-    //     { name: 'Mystic Meadows', key: '5' },
-    //     { name: 'Sorcerers Apprentice', key: '6' },
-    //     { name: 'The Unicorn Kingdom', key: '7' },
-    //   ],
-    // },
+    {
+      genre: 'Mystery',
+      stories: [
+        { name: 'WhoDUNNIT in the Secret Mansion?', key: '1', image:images.mansion},
+        { name: 'Mystery on the Orient Express', key: '3', image:images.train},
+        { name: 'The Hidden Attic', key: '5', image:images.attic},
+      ],
+    },
+    {
+      genre: 'Fantasy',
+      stories: [
+        { name: 'The Faerie Forest Adventure', key: '2', image:images.tree},
+        { name: 'The Spellbound Castle', key: '4', image:images.castle},
+        { name: 'Mystic Meadows', key: '5', image:images.river},
+        { name: 'The Unicorn Kingdom', key: '7', image:images.unicorn},
+      ],
+    },
     // {
     //   genre: 'Sci-Fi',
     //   stories: [
@@ -106,11 +99,13 @@ const styles = StyleSheet.create({
   storyText: {
     fontSize: 15,
     textAlign: 'center', 
-    fontWeight: '200'
+    fontWeight: '200',
+    color: '#d4dee6',
   },
   storyItem: {
     marginTop: 10,
     padding: 30,
+    paddingBottom:10,
     backgroundColor: '#547999',
     textAlign: 'center', 
     marginHorizontal: 10, // Add horizontal space between items
@@ -130,8 +125,8 @@ const styles = StyleSheet.create({
     marginTop:10,
   },
   storyImage: {
-    width: 100, // Adjust the width as needed
-    height: 100, // Adjust the height as needed
+    width: 140, // Adjust the width as needed
+    height: 140, // Adjust the height as needed
     borderRadius: 10, // Optional: if you want rounded corners
     marginBottom: 10, // Space between the image and the text
   },
