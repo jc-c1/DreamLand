@@ -8,6 +8,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import UserProfile from '../../user/userProfile';
 import StoryScreen from '../../../pages/StoryScreen';
 import StoryDetailScreen from '../../../pages/StoryDetailScreen'; 
+import PractiseScreen from '../../../pages/PractiseScreen'; 
+import BackImg from '../../../components/readingScreen/backImg';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +21,17 @@ function MainStackScreen() {
       <MainStack.Screen name="Story" component={StoryScreen} />
       <MainStack.Screen name="StoryDetail" component={StoryDetailScreen} />
     </MainStack.Navigator>
+  );
+}
+
+const AdventureStack = createNativeStackNavigator();
+
+function AdventureStackScreen() {
+  return (
+    <AdventureStack.Navigator>
+      <AdventureStack.Screen name="Practise" component={PractiseScreen} />
+      <AdventureStack.Screen name="Background" component={BackImg} />
+    </AdventureStack.Navigator>
   );
 }
 
@@ -34,7 +47,7 @@ export const NavBarBot = () => {
                 <Tab.Screen name="Home" component={MainStackScreen} options={{
                     tabBarIcon: ({ color }) => <Ionicons name="library-sharp" size={20} color={color} />
                 }}/>
-                <Tab.Screen name="Adventure" component={navBarTop} options={{
+                <Tab.Screen name="Adventure" component={AdventureStackScreen} options={{
                     tabBarIcon: ({ color }) => <FontAwesome5 name="paint-brush" size={24} color={color} />
                 }}/>
                 <Tab.Screen name="Profile" component={UserProfile} options={{
