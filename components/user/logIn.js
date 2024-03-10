@@ -135,7 +135,7 @@ export const LogIn = ({ setPage }) => {
       marginBottom: 20,
     },
     signUpText: {
-      color: "white",
+      color: "#e8979a",
     },
     preview: {
       marginBottom: -300,
