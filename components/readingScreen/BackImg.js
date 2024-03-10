@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import { REACT_APP_OPENAI_API_KEY } from "@env";
-import StoryGen from "./storyCreation/StoryGen";
+import StoryGen from "./storyCreation/storyGen";
 
 const apiKey = REACT_APP_OPENAI_API_KEY;
 const url = "https://api.openai.com/v1/images/generations";
