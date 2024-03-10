@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, ImageBackground } from 'react-native';
 
 function PractiseScreen() {
-  const [name, setName] = useState('shaun');
-  const [age, setAge] = useState('30');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
   const [person, SetPerson] = useState({ name: 'mario', age: 40})
   const clickHandler = () => {
     setName('a different name');
@@ -14,9 +14,14 @@ function PractiseScreen() {
 
   
   return (
-    <View style={styles.container}>
+
+      <ImageBackground
+        source={require('../assets/background.png')}
+        style={styles.backgroundImage}
+        resizeMode='cover'
+      >
       <View style={styles.header}>
-        <Text style={styles.boldText}>Hello World</Text>
+        <Text style={styles.boldText}>Your story starts here...</Text>
       </View>
       <Text>Enter name: </Text>
       <TextInput 
@@ -39,51 +44,20 @@ function PractiseScreen() {
         <Button title='update state' onPress={clickHandler} />
       </View>
       <StatusBar style="auto" />
-    </View>
+      </ImageBackground>
+
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundImage: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    // Ensure the children components are positioned correctly
     justifyContent: 'center',
-  },
-  header: {
-    backgroundColor: 'pink',
-    padding: 20,
-  },
-  boldText: {
-    fontWeight: 'bold',
-  },
-  body: {
-    backgroundColor: 'yellow',
-    padding: 20,
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  buttonContainer: {
-    backgroundColor: 'white',
-    borderColor: 'black',
-    borderWidth: 2,
-    marginTop:20,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: 200,
-  }
+
+  
 });
 
 
