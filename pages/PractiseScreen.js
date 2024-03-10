@@ -36,7 +36,6 @@ function PractiseScreen() {
       <View style={styles.header}>
         <Text style={styles.formText}>Enter your hero: </Text>
         <TextInput
-          multiline
           style={styles.input}
           value={name}
           placeholder="eg. a girl named Emily"
@@ -53,7 +52,6 @@ function PractiseScreen() {
 
         <Text style={styles.formText}>What is your story about: </Text>
         <TextInput
-          multiline
           style={styles.input}
           placeholder="eg. dragons, magic"
           value={theme}
