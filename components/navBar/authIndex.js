@@ -1,10 +1,11 @@
 import React from 'react';
-
+import Auth from '../user/auth';
 import navAuth from './navAuth';
-import navBarBot from './Bot/navBarBot';
+import NavBarBot from './Bot/navBarBot';
+import { useAuthState } from "react-firebase-hooks/auth"
 
-export default function authIndex() {
-    // const {user} = ... auth function
-
-    return user ? <navBarBot /> : <navAuth />;
+export const AuthIndex = () => {
+    const user = getAuth()
+    
+    return (user ? <NavBarBot /> : <Auth />);
 }
