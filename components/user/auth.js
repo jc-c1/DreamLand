@@ -1,87 +1,67 @@
-import { auth } from '../../config/firebase';
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity, 
+    Image, SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { onAuthStateChanged
+} from "firebase/auth";
 
-// import { signInWithPopup, signOut, signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
+import { SignUp } from "./signUp";
+
+import { LogIn } from "./logIn" 
+
+import { auth } from '../../config/firebase';
 
 export const Auth = () => {
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [newUser, setNewUser] = useState(false);
-    // // const user = auth.currentUser;
-    // const [user, setUser] = useState(null);
+    // const user = auth.currentUser;
+    const [user, setUser] = useState(null);
 
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (user) => {
-    //         setUser(user);
-    //     });
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
 
-    //     return () => unsubscribe();
-    // }, []);
+        return () => unsubscribe();
+    }, []);
 
-    // const signIn = async () => {
-    //     try {
-    //         await signInWithEmailAndPassword(auth, email, password)
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
+    const handleOutsideClick = () => {
+        Keyboard.dismiss();
+      }
 
-    // const signInWithGoogle = async () => {
-    //     try {
-    //         await signInWithPopup(auth, googleProvider)
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // };
+        const [page, setPage] = useState("login");
+      
+        return (
+          <TouchableWithoutFeedback onPress={handleOutsideClick}>
+            <SafeAreaView style={styles.totalcontainer}>
+              <View style={styles.totalcontainer}>
+                <Image
+                      style={styles.preview}
+                    />
+                {page == "login" ? (
+                  <LogIn setPage={setPage} />
+                ) : (
+                  <SignUp setPage={setPage} />
+                )}
+              </View>
+            </SafeAreaView>
+          </TouchableWithoutFeedback>
+        );
+    }
 
-    // const logout = async () => {
-    //     try {
-    //         await signOut(auth)
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
-    // const homePage = () => {
-    //     return (<><View>
-    //         <Text>
-    //             <Textinput placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-    //             <Textinput placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
-    //             <button onClick={signIn}>Sign In</button>
-    //             <button onClick={signInWithGoogle}>Sign In With Google</button>
-    //         </Text>
-
-    //         {!newUser ? <button onClick={() => setNewUser(!newUser)}>
-    //             {!newUser ? "Create New Account" : null}
-    //         </button> : <NewUser />}
-
-
-    //     </View></>)
-        
-    // }
-
-    // const authenticatedContent = () => {
-    //     return (
-    //         <View>
-    //             <Text>User: {user?.email}</Text>
-    //             <button style={{marginBottom:"10px"}} onClick={logout}>Logout</button>
-    //         </View>
-    //     );
-    // };
-
-   
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  totalcontainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     
-
-    // return (
-    //     <View>
-    //         {user ? authenticatedContent() : homePage()}
-    //     </View>
-    // );
-
-    
-
-
-
-};
-
+  },
+  preview: {
+    marginBottom: -300,
+    marginTop: 40,
+    resizeMode: 'contain',
+    height: 200
+  },
+});
