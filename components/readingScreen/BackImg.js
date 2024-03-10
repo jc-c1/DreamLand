@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
-import { REACT_APP_OPENAI_API_KEY } from "@env"
+import { REACT_APP_OPENAI_API_KEY } from "@env";
+import StoryGen from "./storyCreation/StoryGen";
 
 const apiKey = REACT_APP_OPENAI_API_KEY;
 const url = "https://api.openai.com/v1/images/generations";
@@ -39,23 +40,32 @@ const BackImg = (name, age, theme) => {
         const bgdata = await generateImg(theme);
         console.log("fetched new background");
         setBackground(bgdata);
+        setIsLoading(false);
       } catch (e) {
         console.error("Failed to fetch data:", error);
       }
     };
 
     fetchBackground();
-    setIsLoading(false);
   }, []);
 
   const base64ImageUri = `data:image/png;base64,${background}`;
+  if (isLoading) {
+    return (
+      <ImageBackground
+        source={require("../../assets/loading.png")}
+      ></ImageBackground>
+    );
+  }
 
   return (
     <ImageBackground
       source={{ uri: base64ImageUri }}
       style={styles.backgroundImage}
       resizeMode="cover"
-    ></ImageBackground>
+    >
+      <StoryGen name={name} age={age} theme={theme} />
+    </ImageBackground>
   );
 };
 
