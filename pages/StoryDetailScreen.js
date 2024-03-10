@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import { collection, query, where, getDocs } from 'firebase/firestore'; // Make sure all these are imported
 import { db } from '../config/firebase.js'; // Check this path is correct as per your project structure
 
@@ -29,11 +29,12 @@ function StoryDetailScreen({ route }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.bgImage}>
-        <View style={styles.fullText}>
       <Text style={styles.title}>{storyDetails.Title}</Text> 
+      <ScrollView style={styles.fullText}>
+      
 
       <Text style={styles.description}>{storyDetails.story}</Text> 
-      </View>
+      </ScrollView>
       </ImageBackground>
     </View>
   );
@@ -46,13 +47,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    fontSize: 22,
+    fontSize: 48,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 5,
+    marginTop: -80,
     textAlign: 'center',
   },
   description: {
     fontSize: 16,
+    fontWeight: '500',
   },
   bgImage: {
     flex: 1,
@@ -64,8 +67,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.5)', // Semi-translucent black background
     borderRadius: 10, // Rounded edges
     padding: 20, // Padding for content inside the box
-    margin: -90, // Margin around the box
+    margin: -80, // Margin around the box
     marginTop: 10,
+    marginBottom: -40,
   },
 });
 
