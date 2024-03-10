@@ -88,8 +88,10 @@ const endStory = async (story) => {
   console.log(ending);
 })();
 
-const storyGen = () => {
+const StoryGen = (name, age, theme) => {
   // render a block of text
   // render 2 prompt buttons
   // render an exit button
 };
+
+export default StoryGen;

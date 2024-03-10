@@ -1,9 +1,10 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MainScreen from './pages/MainScreen';
-import StoryScreen from './pages/StoryScreen';
-import PractiseScreen from './pages/PractiseScreen';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MainScreen from "./pages/MainScreen";
+import StoryScreen from "./pages/StoryScreen";
+import PractiseScreen from "./pages/PractiseScreen";
+import BackImg from "./components/readingScreen/BackImg";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ function App() {
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Story" component={StoryScreen} />
         <Stack.Screen name="Practise" component={PractiseScreen} />
+        <Stack.Screen name="Background" component={BackImg} />
       </Stack.Navigator>
     </NavigationContainer>
   );

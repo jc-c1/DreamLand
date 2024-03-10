@@ -1,13 +1,11 @@
-import dotenv from "dotenv";
-dotenv.config({ path: "../../.env" });
-dotenv.config();
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Text, ImageBackground } from "react-native";
 
-const apiKey = process.env.REACT_NATIVE_OPEN_AI_KEY;
+const apiKey = REACT_NATIVE_OPEN_AI_KEY;
 const url = "https://api.openai.com/v1/images/generations";
 
 const generateImg = async (setting) => {
-  console.log(process.env.REACT_NATIVE_OPEN_AI_KEY);
   try {
     const response = await axios.post(
       url,
@@ -31,8 +29,44 @@ const generateImg = async (setting) => {
   }
 };
 
-(async () => {
-  const imgdata = await generateImg("secret mansion");
-  console.log(imgdata);
+const BackImg = (name, age, theme) => {
+  const [background, setBackground] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchBackground = async () => {
+      try {
+        const bgdata = await generateImg(theme);
+        console.log("fetched new background");
+        setBackground(bgdata);
+      } catch (e) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
 
-})();
+    fetchBackground();
+    setIsLoading(false);
+  }, []);
+
+  const base64ImageUri = `data:image/png;base64,${background}`;
+
+  return (
+    <ImageBackground
+      source={{ uri: base64ImageUri }}
+      style={styles.backgroundImage}
+      resizeMode="cover"
+    >
+      <Text>{base64ImageUri}</Text>
+    </ImageBackground>
+  );
+};
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    // Ensure the children components are positioned correctly
+    padding: 15,
+    alignItems: "center",
+  },
+});
+
+export default BackImg;

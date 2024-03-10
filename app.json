@@ -6,14 +6,16 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "extra": {
+      "REACT_NATIVE_OPEN_AI_KEY": "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",
+      "REACT_NATIVE_COHERE_API_KEY": "GhRFNIcGeYcooWcNbh7eTQW4VpTbbg5opy5EExRA"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
