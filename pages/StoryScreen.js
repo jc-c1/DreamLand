@@ -37,7 +37,7 @@ function StoryScreen({ navigation }) {
   const renderStory = ({ item }) => (
     <TouchableOpacity
       style={styles.storyItem}
-      onPress={() => navigation.navigate('StoryDetail', { storyTitle: item.name })}
+      onPress={() => navigation.navigate('StoryDetail', { storyTitle: item.name, backgroundImage: item.image, })}
     >
       <Image source={item.image} style={styles.storyImage} />
       <Text style={styles.storyText}>{item.name}</Text>
