@@ -31,9 +31,10 @@ const generateImg = async (setting) => {
   }
 };
 
-const BackImg = (name, age, theme) => {
+const BackImg = ({ route }) => {
   const [background, setBackground] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { name, age, theme } = route.params;
   useEffect(() => {
     const fetchBackground = async () => {
       try {
@@ -47,6 +48,7 @@ const BackImg = (name, age, theme) => {
     };
 
     fetchBackground();
+    console.log(name);
   }, []);
 
   const base64ImageUri = `data:image/png;base64,${background}`;

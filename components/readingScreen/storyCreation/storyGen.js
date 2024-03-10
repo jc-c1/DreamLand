@@ -93,6 +93,8 @@ const StoryGen = ({ name, age, theme }) => {
   const [storyObject, setStoryObject] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [ending, setEnding] = useState("");
+
+  console.log(name);
   const getNext = async (story, prompt) => {
     console.log(story);
     console.log(prompt);
@@ -110,6 +112,7 @@ const StoryGen = ({ name, age, theme }) => {
   useEffect(() => {
     const fetchStory = async () => {
       try {
+        console.log(name);
         const story = await initializeStory(age, name, theme);
         setStoryObject(story);
         setIsLoading(false);
