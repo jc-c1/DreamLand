@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
 
-const apiKey = REACT_NATIVE_OPEN_AI_KEY;
+const apiKey = "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";
 const url = "https://api.openai.com/v1/images/generations";
 
 const generateImg = async (setting) => {
@@ -54,9 +54,7 @@ const BackImg = (name, age, theme) => {
       source={{ uri: base64ImageUri }}
       style={styles.backgroundImage}
       resizeMode="cover"
-    >
-      <Text>{base64ImageUri}</Text>
-    </ImageBackground>
+    ></ImageBackground>
   );
 };
 
