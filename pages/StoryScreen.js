@@ -59,9 +59,6 @@ function StoryScreen({ navigation }) {
 
   return (
     <View style={styles.container1}>
-      <View style={styles.header1}>
-        <Text style={styles.boldText}>Story Screen</Text>
-      </View>
       <FlatList
         data={categories}
         renderItem={renderGenre}
@@ -76,12 +73,6 @@ const styles = StyleSheet.create({
   container1: {
     flex: 1,
     backgroundColor: '#101820',
-  },
-  header1: {
-    backgroundColor: '#d8a7a9',
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   storyText: {
     fontSize: 15,
