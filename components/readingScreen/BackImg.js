@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, ImageBackground, Text } from "react-native";
-import StoryGen from "../readingScreen/storyCreation/StoryGen";
+import { View, StyleSheet, Text, ImageBackground } from "react-native";
+import { REACT_APP_OPENAI_API_KEY } from "@env";
+import StoryGen from "./storyCreation/StoryGen";
 
-const apiKey = "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";
+const apiKey = REACT_APP_OPENAI_API_KEY;
 const url = "https://api.openai.com/v1/images/generations";
 
 const generateImg = async (setting) => {
@@ -12,7 +13,7 @@ const generateImg = async (setting) => {
       url,
       {
         model: "dall-e-3",
-        prompt: `generate an image of ${setting} in children's storybook art style with no word`,
+        prompt: `generate an image of ${setting} in children's storybook art style`,
         n: 1,
         response_format: "b64_json",
         size: "1024x1024",
@@ -30,14 +31,14 @@ const generateImg = async (setting) => {
   }
 };
 
-const BackImg = ({ route }) => {
+const BackImg = (name, age, theme) => {
   const [background, setBackground] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { name, age, theme } = route.params;
   useEffect(() => {
     const fetchBackground = async () => {
       try {
         const bgdata = await generateImg(theme);
+        console.log("fetched new background");
         setBackground(bgdata);
         setIsLoading(false);
       } catch (e) {
@@ -49,9 +50,12 @@ const BackImg = ({ route }) => {
   }, []);
 
   const base64ImageUri = `data:image/png;base64,${background}`;
-
   if (isLoading) {
-    return <Text>{name}</Text>;
+    return (
+      <ImageBackground
+        source={require("../../assets/loading.png")}
+      ></ImageBackground>
+    );
   }
 
   return (
