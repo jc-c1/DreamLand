@@ -33,9 +33,10 @@ function AdventureStackScreen() {
       <AdventureStack.Screen
         name="Practise"
         component={PractiseScreen}
-        options={{ headerShown: false }}
+        options={{  headerShown: true, headerStyle: { backgroundColor: "#d8a7a9"}, title: "Start Your Adventure!", }} 
       />
-      <AdventureStack.Screen name="Background" component={BackImg} />
+      <AdventureStack.Screen name="Background" component={BackImg} 
+      options={{  headerShown: true, headerStyle: { backgroundColor: "#d8a7a9"}, title: "Your Adventure!", headerBackTitle: 'Back' }}/>
     </AdventureStack.Navigator>
   );
 }
@@ -59,6 +60,7 @@ export const NavBarBot = () => {
           tabBarLabel: "Adventure",
           tabBarIcon: ({ color }) => <FontAwesome5 name="paint-brush" size={24} color={color} />,
           headerStyle: { backgroundColor: "#d8a7a9"},
+          headerShown: false,
         }} />
         <Tab.Screen name="Profile" component={UserProfile} options={{
           tabBarIcon: ({ color }) => <Ionicons name="person-sharp" size={20} color={color} />,
