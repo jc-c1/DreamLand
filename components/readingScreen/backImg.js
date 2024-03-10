@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
+import { REACT_APP_OPENAI_API_KEY } from "@env"
 
-const apiKey = "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";
+const apiKey = REACT_APP_OPENAI_API_KEY;
 const url = "https://api.openai.com/v1/images/generations";
 
 const generateImg = async (setting) => {
