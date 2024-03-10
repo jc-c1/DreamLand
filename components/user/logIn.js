@@ -144,8 +144,8 @@ export const LogIn = ({ setPage }) => {
       height: 200
     },
     logoImage: {
-      width: 200,
-      height: 200,
+      width: 250,
+      height: 250,
       borderRadius: 135,
       borderColor: '#d8a7a9',
       borderWidth: 10,
