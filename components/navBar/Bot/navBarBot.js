@@ -17,7 +17,7 @@ const MainStack = createNativeStackNavigator();
 function MainStackScreen() {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen name="Story" component={StoryScreen} />
+      <MainStack.Screen name="Story" component={StoryScreen} options={{ headerShown: false }} />
       <MainStack.Screen name="StoryDetail" component={StoryDetailScreen} />
     </MainStack.Navigator>
   );
