@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { auth, db } from '../../config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
-export default function userProfile() {
+export default function UserProfile() {
     const [userDetails, setUserDetails] = useState({});
     const userUID = auth.currentUser.uid;
 
