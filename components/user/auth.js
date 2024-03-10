@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity,
 import { onAuthStateChanged
 } from "firebase/auth";
 
-import { SignUp } from "./signUp";
+
 
 import { LogIn } from "./logIn" 
 
