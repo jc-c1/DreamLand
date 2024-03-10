@@ -68,10 +68,11 @@ export default function UserProfile() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#101820',
   },
   fullText: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-translucent black background
-    borderRadius: 10, // Rounded edges
+    backgroundColor: 'rgba(10, 10, 10, 0.5)', // Semi-translucent black background
+    borderRadius: 15, // Rounded edges
     padding: 20, // Padding for content inside the box
     margin: -50, // Margin around the box
     marginTop: 10,

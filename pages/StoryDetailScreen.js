@@ -31,8 +31,6 @@ function StoryDetailScreen({ route }) {
       <ImageBackground source={backgroundImage} style={styles.bgImage}>
       <Text style={styles.title}>{storyDetails.Title}</Text> 
       <ScrollView style={styles.fullText}>
-      
-
       <Text style={styles.description}>{storyDetails.story}</Text> 
       </ScrollView>
       </ImageBackground>
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#101820',
   },
   title: {
     fontSize: 48,
@@ -64,8 +62,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   fullText: {
-    backgroundColor: 'rgba(255,255,255,0.5)', // Semi-translucent black background
-    borderRadius: 10, // Rounded edges
+    backgroundColor: 'rgba(255,255,255,0.6)', // Semi-translucent black background
+    borderRadius: 15, // Rounded edges
     padding: 20, // Padding for content inside the box
     margin: -80, // Margin around the box
     marginTop: 10,
