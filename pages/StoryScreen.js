@@ -1,18 +1,16 @@
 // StoryScreen.js
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, FlatList, Image } from 'react-native';
-import images from '../../../assets/Img/images';
-// StoryScreen.js
+import { Button, StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
+import images from '../assets/Img/images';
 
-
-function StoryScreen() {
+function StoryScreen({ navigation }) {
   const [categories, setCategories] = useState([
     {
       genre: 'Adventure',
       stories: [
-        {name: 'The Great Expedition', key: '1', image:images.pink},
-        {name: 'The Golden Treasure Quest', key: '2', image:images.treasure},
+        {name: 'Sample', key: '1', image:images.pink},
+        {name: 'Sample2', key: '2', image:images.treasure},
         {name: 'Pirate Passage', key: '3', image:images.pirate},
         {name: 'The Rugged Ridge Riders', key: '4', image:images.forest},
       ],
@@ -34,29 +32,16 @@ function StoryScreen() {
         { name: 'The Unicorn Kingdom', key: '7', image:images.unicorn},
       ],
     },
-    // {
-    //   genre: 'Sci-Fi',
-    //   stories: [
-    //     { name: 'Journey Beyond the Stars', key: '1' },
-    //     { name: 'The Quantum Paradox', key: '2' },
-    //     { name: 'Galactic Outlaws', key: '3' },
-    //   ],
-    // },
-    // {
-    //   genre: 'Childrennnn',
-    //   stories: [
-    //     { name: 'The Enchanted Balloon', key: '1' },
-    //     { name: 'Milos Monster Adventure', key: '2' },
-    //     { name: 'The Lost Penguin', key: '3' },
-    //   ],
-    // },
   ])
 
   const renderStory = ({item}) => (
-    <View style={styles.storyItem}>
+    <TouchableOpacity 
+      style={styles.storyItem}
+      onPress={() => navigation.navigate('StoryDetail', { storyTitle: item.name })}
+    >
       <Image source={item.image} style={styles.storyImage} />
       <Text style={styles.storyText}>{item.name}</Text>
-    </View>
+    </TouchableOpacity>
   )
 
   const renderGenre = ({item}) => (

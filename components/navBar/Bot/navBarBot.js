@@ -14,7 +14,7 @@ export const NavBarBot = () => {
             screenOptions={{
                 tabBarActiveTintColor: "purple",
                 tabBarInactiveTintColor: "lightgrey",
-            }}>
+            }} initialRouteName="Home">
                 {/* <Tab.Screen name="Home" component={} options={{
                     tabBarIcon: ({ color }) => <Ionicons name="library-sharp" size={20} color={color} />
                 }}/>
