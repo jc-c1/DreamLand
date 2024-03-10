@@ -11,7 +11,7 @@ import { db } from "../config/firebase.js"; // Check this path is correct as per
 
 function StoryDetailScreen({ route }) {
   const [storyDetails, setStoryDetails] = useState({});
-  const storyTitle = route.params.storyTitle; // Get the story title passed through navigation
+  const storyTitle = route.params.storyTitle; 
   const backgroundImage = route.params.backgroundImage;
 
   useEffect(() => {
@@ -65,15 +65,15 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    // Ensure the children components are positioned correctly
     padding: 100,
     alignItems: "center",
+    opacity: 0.9,
   },
   fullText: {
-    backgroundColor: "rgba(255,255,255,0.6)", // Semi-translucent black background
-    borderRadius: 15, // Rounded edges
-    padding: 20, // Padding for content inside the box
-    margin: -80, // Margin around the box
+    backgroundColor: 'rgba(255,255,255,0.6)', // Semi-translucent black background
+    borderRadius: 15, 
+    padding: 20, 
+    margin: -80, 
     marginTop: 10,
     marginBottom: -40,
   },

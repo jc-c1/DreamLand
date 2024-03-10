@@ -57,8 +57,10 @@ const BackImg = ({ route }) => {
   if (isLoading) {
     return (
       <ImageBackground
+
         source={images.loading}
         style={styles.backgroundImage}
+
         resizeMode="cover"
       ></ImageBackground>
     );
