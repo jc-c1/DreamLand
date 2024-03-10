@@ -48,38 +48,24 @@ export const NavBarBot = () => {
       <Tab.Navigator
         screenOptions={{
           tabBarActiveTintColor: "purple",
-          tabBarInactiveTintColor: "lightgrey",
-        }}
-        initialRouteName="Home"
-      >
-        <Tab.Screen
-          name="Home"
-          component={MainStackScreen}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="library-sharp" size={20} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Start Your Adventure!"
-          component={AdventureStackScreen}
-          options={{
-            tabBarLabel: "Adventure",
-            tabBarIcon: ({ color }) => (
-              <FontAwesome5 name="paint-brush" size={24} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={UserProfile}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="person-sharp" size={20} color={color} />
-            ),
-          }}
-        />
+          tabBarInactiveTintColor: "#656565",
+          tabBarStyle: { backgroundColor: "#d8a7a9" },
+        }} initialRouteName="Home">
+
+        <Tab.Screen name="Home" component={MainStackScreen} options={{
+          tabBarIcon: ({ color }) => <Ionicons name="library-sharp" size={20} color={color} />,
+          headerStyle: { backgroundColor: "#d8a7a9"},
+        }} />
+        <Tab.Screen name="Start Your Adventure!" component={AdventureStackScreen} options={{
+          tabBarLabel: "Adventure",
+          tabBarIcon: ({ color }) => <FontAwesome5 name="paint-brush" size={24} color={color} />,
+          headerStyle: { backgroundColor: "#d8a7a9"},
+        }} />
+        <Tab.Screen name="Profile" component={UserProfile} options={{
+          tabBarIcon: ({ color }) => <Ionicons name="person-sharp" size={20} color={color} />,
+          headerStyle: { backgroundColor: "#d8a7a9"},
+        }} />
+
       </Tab.Navigator>
     </NavigationContainer>
   );
