@@ -112,7 +112,6 @@ const StoryGen = ({ name, age, theme }) => {
       try {
         const story = await initializeStory(age, name, theme);
         setStoryObject(story);
-        console.log(story);
         setIsLoading(false);
       } catch (e) {
         console.error("Failed to fetch story:", e);
