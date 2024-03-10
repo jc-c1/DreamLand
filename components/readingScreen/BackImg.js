@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import { REACT_APP_OPENAI_API_KEY } from "@env";
 import StoryGen from "./storyCreation/storyGen";
+import images from '../../assets/Img/images';
 
 const apiKey = REACT_APP_OPENAI_API_KEY;
 const url = "https://api.openai.com/v1/images/generations";
@@ -43,6 +44,7 @@ const BackImg = ({ route }) => {
         setBackground(bgdata);
         setIsLoading(false);
       } catch (e) {
+        setIsLoading(false);
         console.error("Failed to fetch data:", error);
       }
     };
@@ -56,7 +58,6 @@ const BackImg = ({ route }) => {
   if (isLoading) {
     return (
       <ImageBackground
-        source={require("../../assets/loading.png")}
         style={styles.backgroundImage}
         resizeMode="cover"
       ></ImageBackground>

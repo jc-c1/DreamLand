@@ -14,6 +14,8 @@ import { auth } from '../../config/firebase';
 export const LogIn = ({ setPage }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const logoImg = require("../../assets/Img/AppIcon.jpeg");
+
   
     const loginUser = () => {
       signInWithEmailAndPassword(auth, email, password)
@@ -27,8 +29,10 @@ export const LogIn = ({ setPage }) => {
   
     return (
       <View style={styles.container}>
+          <View style={styles.profileContainer}>
+            <Image source={logoImg} style={styles.logoImage} resizeMode="contain" />
+          </View>
         <Text style={styles.title}>Login</Text>
-  
         <Text style={styles.signUp}>
           Don't have an account?
           <Text style={styles.signUpText} onPress={() => setPage("signup")}>
@@ -92,7 +96,7 @@ export const LogIn = ({ setPage }) => {
       marginBottom: 12,
       marginTop: 6,
       padding: 12,
-      backgroundColor: "#547999",
+      backgroundColor: "#e8979a",
       borderRadius: 10,
     },
     inputUsername: {
@@ -120,7 +124,7 @@ export const LogIn = ({ setPage }) => {
       fontWeight: "600",
       marginBottom: 20,
       fontSize: 46,
-      color: "white",
+      color: "#e8979a",
     },
     inputboxes: {
       width: 310,
@@ -138,5 +142,12 @@ export const LogIn = ({ setPage }) => {
       marginTop: 40,
       resizeMode: 'contain',
       height: 200
+    },
+    logoImage: {
+      width: 250,
+      height: 250,
+      borderRadius: 135,
+      borderColor: '#d8a7a9',
+      borderWidth: 10,
     },
   });

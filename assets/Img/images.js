@@ -10,6 +10,7 @@ const images = {
     castle: require('./Castle.png'),
     river: require('./River.png'),
     unicorn: require('./Unicorn.png'),
+    loading: require('../loading.png'),
     // Add more images here
   };
   
