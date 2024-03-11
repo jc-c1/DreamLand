@@ -36,13 +36,6 @@ export const LogIn = ({ setPage }) => {
         <Image source={logoImg} style={styles.logoImage} resizeMode='contain' />
       </View>
       <Text style={styles.title}>Login</Text>
-      <Text style={styles.signUp}>
-        Don&lsquo;t have an account?
-        <Text style={styles.signUpText} onPress={() => setPage('signup')}>
-          {' '}
-          Sign Up
-        </Text>
-      </Text>
       <View style={styles.inputboxes}>
         <View style={styles.usernamePasswordBox}>
           <MaterialIcons name='alternate-email' size={20} color='#666' />
@@ -64,6 +57,14 @@ export const LogIn = ({ setPage }) => {
             secureTextEntry={true}
           />
         </View>
+
+        <Text style={styles.signUp}>
+        New to Dreamland?{'  '}
+        <Text style={styles.signUpText} onPress={() => setPage('signup')}>
+          Sign Up
+        </Text>
+      </Text>
+
         <View style={styles.LogInBox}>
           <TouchableOpacity style={{ flex: 1 }} onPress={loginUser}>
             <Text
@@ -116,15 +117,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  totalcontainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#101820'
-  },
   title: {
     fontWeight: '600',
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 5,
     fontSize: 46,
     color: '#e8979a'
   },
@@ -137,13 +133,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   signUpText: {
-    color: '#e8979a'
-  },
-  preview: {
-    marginBottom: -300,
-    marginTop: 40,
-    resizeMode: 'contain',
-    height: 200
+    color: '#e8979a',
+    textDecorationLine: "underline"
   },
   logoImage: {
     width: 250,

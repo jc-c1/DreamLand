@@ -28,14 +28,6 @@ export function SignUp ({ setPage }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
-      <Text style={styles.signUp}>
-        Already have an account?
-        <Text style={styles.signUpText} onPress={() => setPage('login')}>
-          {' '}
-          Login
-        </Text>
-      </Text>
-
       <View style={styles.inputboxes}>
         <View style={styles.usernamePasswordBox}>
           <MaterialIcons name='alternate-email' size={20} color='#666' />
@@ -57,6 +49,12 @@ export function SignUp ({ setPage }) {
             secureTextEntry={true}
           />
         </View>
+        <Text style={styles.logIn}>
+        Have an account?{'  '}
+        <Text style={styles.logInText} onPress={() => setPage('login')}>
+          Login
+        </Text>
+      </Text>
         <View style={styles.LogInBox}>
           <TouchableOpacity style={{ flex: 1 }} onPress={createUser}>
             <Text
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     marginTop: 6,
     padding: 12,
-    backgroundColor: '#547999',
+    backgroundColor: '#e8979a',
     borderRadius: 10
   },
   inputUsername: {
@@ -108,33 +106,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  totalcontainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#101820'
-  },
   title: {
     fontWeight: '600',
     marginBottom: 20,
     fontSize: 46,
-    color: 'white'
+    color: '#e8979a'
   },
   inputboxes: {
     width: 310,
     flexDirection: 'col'
   },
-  signUp: {
+  logIn: {
     color: 'gray',
     marginBottom: 20
   },
-  signUpText: {
-    color: 'white'
+  logInText: {
+    color: '#e8979a',
+    textDecorationLine: "underline"
   },
-  preview: {
-    marginBottom: -300,
-    marginTop: 40,
-    resizeMode: 'contain',
-    height: 200
-  }
 })
