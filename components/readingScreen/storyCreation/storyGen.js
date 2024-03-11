@@ -105,19 +105,6 @@ const endStory = async (story) => {
   return response.generations[0].text;
 };
 
-
-// test function
-
-// (async () => {
-//   let storyObject = await initializeStory(5, "a girl", "magic island");
-//   console.log(storyObject.story);
-//   let continueStory = await contStory(storyObject, storyObject.option1);
-//   console.log(continueStory.story);
-//   let ending = await endStory(continueStory.story);
-//   console.log(ending);
-// })();
-
-
 const StoryGen = ({ name, age, theme }) => {
   const [storyObject, setStoryObject] = useState({});
   const [isLoading, setIsLoading] = useState(true);
