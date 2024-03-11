@@ -1,33 +1,35 @@
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
+import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { StatusBar } from 'expo-status-bar'
 import {
   Button,
   StyleSheet,
   Text,
   TextInput,
   View,
-  ImageBackground,
-} from "react-native";
+  ImageBackground
+} from 'react-native'
 
-function StoryCreatorScreen() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [theme, setTheme] = useState("");
-  const navigation = useNavigation();
+/* global require */
+
+function StoryCreatorScreen () {
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+  const [theme, setTheme] = useState('')
+  const navigation = useNavigation()
 
   const clickHandler = () => {
     if (name && age && theme) {
       // render the new component
-      navigation.navigate("Background", { name: name, age: age, theme: theme });
+      navigation.navigate('Background', { name: name, age: age, theme: theme })
     }
-  };
+  }
 
   return (
     <ImageBackground
-      source={require("../assets/background.png")}
+      source={require('../assets/background.png')}
       style={styles.backgroundImage}
-      resizeMode="cover"
+      resizeMode='cover'
     >
       <View style={styles.header}>
         <Text style={styles.boldText}>Your story starts here...</Text>
@@ -38,14 +40,14 @@ function StoryCreatorScreen() {
         <TextInput
           style={styles.input}
           value={name}
-          placeholder="eg. a girl named Emily"
+          placeholder='eg. a girl named Emily'
           onChangeText={setName}
         />
-        <Text style={styles.formText}>Enter your child's age: </Text>
+        <Text style={styles.formText}>Enter your child&lsquo;s age: </Text>
         <TextInput
-          keyboardType="numeric"
+          keyboardType='numeric'
           style={styles.input}
-          placeholder="eg. 5"
+          placeholder='eg. 5'
           value={age}
           onChangeText={setAge}
         />
@@ -53,22 +55,22 @@ function StoryCreatorScreen() {
         <Text style={styles.formText}>What is your story about: </Text>
         <TextInput
           style={styles.input}
-          placeholder="eg. dragons, magic"
+          placeholder='eg. dragons, magic'
           value={theme}
           onChangeText={setTheme}
         />
 
-        <StatusBar style="auto" />
+        <StatusBar style='auto' />
       </View>
       <View style={styles.header}>
         <Button
           style={styles.boldText}
-          title="Generate Story"
+          title='Generate Story'
           onPress={clickHandler}
         />
       </View>
     </ImageBackground>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -76,22 +78,22 @@ const styles = StyleSheet.create({
     flex: 1,
     // Ensure the children components are positioned correctly
     padding: 15,
-    alignItems: "center",
+    alignItems: 'center'
   },
 
   header: {
     padding: 15,
     margin: 20,
     borderRadius: 15,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     opacity: 0.8,
-    alignItems: "center",
+    alignItems: 'center'
   },
 
-  boldText: { color: "black", fontWeight: "bold" },
+  boldText: { color: 'black', fontWeight: 'bold' },
 
   formText: { padding: 20 },
-  input: { borderColor: "black", borderWidth: 1, padding: 5, borderRadius: 5 },
-});
+  input: { borderColor: 'black', borderWidth: 1, padding: 5, borderRadius: 5 }
+})
 
-export default StoryCreatorScreen;
+export default StoryCreatorScreen

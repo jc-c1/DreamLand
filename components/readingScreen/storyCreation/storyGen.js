@@ -1,40 +1,35 @@
-import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
-import React, { useState, useEffect } from "react";
-import { REACT_APP_COHERE_API_KEY } from "@env";
+import { View, Text, Button, StyleSheet, ScrollView } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { REACT_APP_COHERE_API_KEY } from '@env'
 
-
-import { CohereClient } from "cohere-ai";
-
+import { CohereClient } from 'cohere-ai'
 
 const cohere = new CohereClient({
-  token: REACT_APP_COHERE_API_KEY,
-});
+  token: REACT_APP_COHERE_API_KEY
+})
 
-
-function parseResponse(response) {
-  const jsonMatch = response.match(/{[\s\S]*?}/);
-
+function parseResponse (response) {
+  const jsonMatch = response.match(/{[\s\S]*?}/)
 
   if (jsonMatch) {
-    const jsonString = jsonMatch[0];
-    const jsonObject = JSON.parse(jsonString);
+    const jsonString = jsonMatch[0]
+    const jsonObject = JSON.parse(jsonString)
     if (!jsonObject.option1 || !jsonObject.option2) {
-      throw new Error("Improper Response");
+      throw new Error('Improper Response')
     }
-    return jsonObject;
+    return jsonObject
   } else {
-    throw new Error("cannot get response");
+    throw new Error('cannot get response')
   }
 }
 
-
 // takes in an age, mc, and a theme, then generate the beginning of a story along with 2 prompts and a question
 const initializeStory = async (age, hero, themes) => {
-  let tryCount = 0;
+  let tryCount = 0
   while (tryCount < 3) {
     try {
       const response = await cohere.generate({
-        model: "command",
+        model: 'command',
         prompt: `Give a json file with the following fields only:\n
        story: beginning of the bedtime story for a ${age} years old child about the main character ${hero} and ${themes}.
        question: how should the protagonist continue?\n
@@ -44,27 +39,25 @@ const initializeStory = async (age, hero, themes) => {
         temperature: 0.9,
         k: 0,
         stopSequences: [],
-        returnLikelihoods: "NONE",
-      });
+        returnLikelihoods: 'NONE'
+      })
 
-
-      return parseResponse(response.generations[0].text);
+      return parseResponse(response.generations[0].text)
     } catch (e) {
-      console.log(e);
-      tryCount++;
+      console.log(e)
+      tryCount++
     }
   }
-};
-
+}
 
 // given an existing story and a prompt selected by user, write another portion of the story and give 2 prompts and a question in the end
 const contStory = async (story, prompt) => {
   // if the given story is too long, maybe summarize it
-  let tryCount = 0;
+  let tryCount = 0
   while (tryCount < 3) {
     try {
       const response = await cohere.generate({
-        model: "command",
+        model: 'command',
         prompt: `given this story: "${story.story}". Give a JSON file with the following fields only:\n
    story: write the next paragraph to the story:\n given that "${prompt}" happened next. Remove any duplicates sentences with the given story
    question: how should the protagonist continue?\n
@@ -74,71 +67,68 @@ const contStory = async (story, prompt) => {
         temperature: 0.9,
         k: 0,
         stopSequences: [],
-        returnLikelihoods: "NONE",
-      });
+        returnLikelihoods: 'NONE'
+      })
 
-
-      return parseResponse(response.generations[0].text);
+      return parseResponse(response.generations[0].text)
     } catch (e) {
-      console.log(e);
-      tryCount++;
+      console.log(e)
+      tryCount++
     }
   }
-};
-
+}
 
 // write an ending to this story
-const endStory = async (story) => {
+const endStory = async story => {
   if (story.length > 100) {
     // summarize story
   }
   const response = await cohere.generate({
-    model: "command",
+    model: 'command',
     prompt: `write a 2 paragraphs ending to this story: ${story}, story only do not comment`,
     maxTokens: 300,
     temperature: 0.9,
     k: 0,
     stopSequences: [],
-    returnLikelihoods: "NONE",
-  });
+    returnLikelihoods: 'NONE'
+  })
 
-
-  return response.generations[0].text;
-};
+  return response.generations[0].text
+}
 
 const StoryGen = ({ name, age, theme }) => {
-  const [storyObject, setStoryObject] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [ending, setEnding] = useState("");
+  const [storyObject, setStoryObject] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const [ending, setEnding] = useState('')
   const getNext = async (story, prompt) => {
-    console.log(story);
-    console.log(prompt);
-    let newStory = await contStory(story, prompt);
-    setStoryObject(newStory);
-  };
-  const getEnd = async (storyObject) => {
-    console.log(storyObject.story);
-    let ending = await endStory(storyObject.story);
-    setEnding(ending);
-  };
+    console.log(story)
+    console.log(prompt)
+    let newStory = await contStory(story, prompt)
+    setStoryObject(newStory)
+  }
+  const getEnd = async storyObject => {
+    console.log(storyObject.story)
+    let ending = await endStory(storyObject.story)
+    setEnding(ending)
+  }
   // render a block of text
   // render 2 prompt buttons
   // render an save/end button
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        const story = await initializeStory(age, name, theme);
-        setStoryObject(story);
-        setIsLoading(false);
+        const story = await initializeStory(age, name, theme)
+        setStoryObject(story)
+        setIsLoading(false)
       } catch (e) {
-        console.error("Failed to fetch story:", e);
+        console.error('Failed to fetch story:', e)
       }
-    };
-    fetchStory();
-  }, []);
+    }
+    fetchStory()
+  }, [])
 
   if (isLoading) {
-    return <Text>Loading</Text>;
+    return <Text>Loading</Text>
   }
 
   if (ending) {
@@ -146,7 +136,7 @@ const StoryGen = ({ name, age, theme }) => {
       <View style={styles.header}>
         <Text>{ending}</Text>
       </View>
-    );
+    )
   }
 
   return (
@@ -159,7 +149,7 @@ const StoryGen = ({ name, age, theme }) => {
       </View>
       <View style={styles.header}>
         <Text
-          color="black"
+          color='black'
           onPress={() => getNext(storyObject, storyObject.option1)}
         >
           {storyObject.option1}
@@ -167,7 +157,7 @@ const StoryGen = ({ name, age, theme }) => {
       </View>
       <View style={styles.header}>
         <Text
-          color="black"
+          color='black'
           onPress={() => getNext(storyObject, storyObject.option2)}
         >
           {storyObject.option2}
@@ -175,31 +165,29 @@ const StoryGen = ({ name, age, theme }) => {
       </View>
       <View style={styles.header}>
         <Button
-          color="black"
-          title="End Story"
+          color='black'
+          title='End Story'
           onPress={() => getEnd(storyObject)}
         />
       </View>
     </ScrollView>
-  );
-};
-
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
     // Ensure the children components are positioned correctly
   },
-
 
   header: {
     padding: 10,
     margin: 10,
     borderRadius: 15,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     opacity: 0.8,
-    alignItems: "center",
-  },
-});
+    alignItems: 'center'
+  }
+})
 
-export default StoryGen;
+export default StoryGen

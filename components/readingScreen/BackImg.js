@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground } from "react-native";
 import { REACT_APP_OPENAI_API_KEY } from "@env";
 import StoryGen from "./storyCreation/storyGen";
 import images from "../../assets/Img/images";
@@ -44,7 +44,7 @@ const BackImg = ({ route }) => {
         setIsLoading(false);
       } catch (e) {
         setIsLoading(false);
-        console.error("Failed to fetch data:", error);
+        console.error("Failed to fetch data:", e);
       }
     };
 
