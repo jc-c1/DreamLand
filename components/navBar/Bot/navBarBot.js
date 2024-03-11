@@ -7,7 +7,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import UserProfile from "../../user/userProfile";
 import StoryScreen from "../../../pages/StoryScreen";
 import StoryDetailScreen from "../../../pages/StoryDetailScreen";
-import PractiseScreen from "../../../pages/PractiseScreen";
+import StoryCreatorScreen from "../../../pages/StoryCreatorScreen";
 import BackImg from "../../../components/readingScreen/BackImg";
 
 const Tab = createBottomTabNavigator();
@@ -31,8 +31,8 @@ function AdventureStackScreen() {
   return (
     <AdventureStack.Navigator>
       <AdventureStack.Screen
-        name="Practise"
-        component={PractiseScreen}
+        name="StoryCreator"
+        component={StoryCreatorScreen}
         options={{  headerShown: true, headerStyle: { backgroundColor: "#d8a7a9"}, title: "Start Your Adventure!", }} 
       />
       <AdventureStack.Screen name="Background" component={BackImg} 

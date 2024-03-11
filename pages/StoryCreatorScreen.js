@@ -10,7 +10,7 @@ import {
   ImageBackground,
 } from "react-native";
 
-function PractiseScreen() {
+function StoryCreatorScreen() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [theme, setTheme] = useState("");
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   input: { borderColor: "black", borderWidth: 1, padding: 5, borderRadius: 5 },
 });
 
-export default PractiseScreen;
+export default StoryCreatorScreen;

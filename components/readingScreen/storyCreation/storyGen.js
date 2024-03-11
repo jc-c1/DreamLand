@@ -80,6 +80,7 @@ const contStory = async (story, prompt) => {
 
       return parseResponse(response.generations[0].text);
     } catch (e) {
+      console.log(e);
       tryCount++;
     }
   }
@@ -126,7 +127,6 @@ const StoryGen = ({ name, age, theme }) => {
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        console.log(name);
         const story = await initializeStory(age, name, theme);
         setStoryObject(story);
         setIsLoading(false);
