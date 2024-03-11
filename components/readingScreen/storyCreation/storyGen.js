@@ -33,7 +33,7 @@ const initializeStory = async (age, hero, themes) => {
         prompt: `Give a json file with the following fields only:\n
        story: beginning of the bedtime story for a ${age} years old child about the main character ${hero} and ${themes}.
        question: how should the protagonist continue?\n
-       option1: give one possible choice protagonist can make\n
+       option1: give one possible choice protagonist can make.\n
        option2: give another possible choice.`,
         maxTokens: 300,
         temperature: 0.9,
