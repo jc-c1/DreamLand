@@ -2,63 +2,89 @@ import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import { REACT_APP_COHERE_API_KEY } from "@env";
 
+
 import { CohereClient } from "cohere-ai";
+
 
 const cohere = new CohereClient({
   token: REACT_APP_COHERE_API_KEY,
 });
 
+
 function parseResponse(response) {
   const jsonMatch = response.match(/{[\s\S]*?}/);
+
 
   if (jsonMatch) {
     const jsonString = jsonMatch[0];
     const jsonObject = JSON.parse(jsonString);
+    if (!jsonObject.option1 || !jsonObject.option2) {
+      throw new Error("Improper Response");
+    }
     return jsonObject;
   } else {
     throw new Error("cannot get response");
   }
 }
 
+
 // takes in an age, mc, and a theme, then generate the beginning of a story along with 2 prompts and a question
 const initializeStory = async (age, hero, themes) => {
-  const response = await cohere.generate({
-    model: "command",
-    prompt: `Give a json file with the following fields only:\n
-    story: beginning of the bedtime story for a ${age} years old child about the main character ${hero} and ${themes}.
-    question: how should the protagonist continue?\n
-    option1: give one possible choice protagonist can make\n
-    option2: give another possible choice.`,
-    maxTokens: 300,
-    temperature: 0.9,
-    k: 0,
-    stopSequences: [],
-    returnLikelihoods: "NONE",
-  });
+  let tryCount = 0;
+  while (tryCount < 3) {
+    try {
+      const response = await cohere.generate({
+        model: "command",
+        prompt: `Give a json file with the following fields only:\n
+       story: beginning of the bedtime story for a ${age} years old child about the main character ${hero} and ${themes}.
+       question: how should the protagonist continue?\n
+       option1: give one possible choice protagonist can make\n
+       option2: give another possible choice.`,
+        maxTokens: 300,
+        temperature: 0.9,
+        k: 0,
+        stopSequences: [],
+        returnLikelihoods: "NONE",
+      });
 
-  return parseResponse(response.generations[0].text);
+
+      return parseResponse(response.generations[0].text);
+    } catch (e) {
+      console.log(e);
+      tryCount++;
+    }
+  }
 };
+
 
 // given an existing story and a prompt selected by user, write another portion of the story and give 2 prompts and a question in the end
 const contStory = async (story, prompt) => {
   // if the given story is too long, maybe summarize it
+  let tryCount = 0;
+  while (tryCount < 3) {
+    try {
+      const response = await cohere.generate({
+        model: "command",
+        prompt: `given this story: "${story.story}". Give a JSON file with the following fields only:\n
+   story: write the next paragraph to the story:\n given that "${prompt}" happened next. Remove any duplicates sentences with the given story
+   question: how should the protagonist continue?\n
+   option1: write one possible choice protagonist can make\n
+   option2: write another possible choice.`,
+        maxTokens: 300,
+        temperature: 0.9,
+        k: 0,
+        stopSequences: [],
+        returnLikelihoods: "NONE",
+      });
 
-  const response = await cohere.generate({
-    model: "command",
-    prompt: `given this story: "${story.story}". Give a JSON file with the following fields only:\n
-    story: write the next paragraph to the story:\n given that "${prompt}" happened next. Remove any duplicates sentences with the given story
-    question: how should the protagonist continue?\n
-    option1: write one possible choice protagonist can make\n
-    option2: write another possible choice.`,
-    maxTokens: 300,
-    temperature: 0.9,
-    k: 0,
-    stopSequences: [],
-    returnLikelihoods: "NONE",
-  });
 
-  return parseResponse(response.generations[0].text);
+      return parseResponse(response.generations[0].text);
+    } catch (e) {
+      tryCount++;
+    }
+  }
 };
+
 
 // write an ending to this story
 const endStory = async (story) => {
@@ -75,8 +101,10 @@ const endStory = async (story) => {
     returnLikelihoods: "NONE",
   });
 
+
   return response.generations[0].text;
 };
+
 
 // test function
 
@@ -89,12 +117,11 @@ const endStory = async (story) => {
 //   console.log(ending);
 // })();
 
+
 const StoryGen = ({ name, age, theme }) => {
   const [storyObject, setStoryObject] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [ending, setEnding] = useState("");
-
-  console.log(name);
   const getNext = async (story, prompt) => {
     console.log(story);
     console.log(prompt);
@@ -170,11 +197,13 @@ const StoryGen = ({ name, age, theme }) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     // Ensure the children components are positioned correctly
   },
+
 
   header: {
     padding: 10,

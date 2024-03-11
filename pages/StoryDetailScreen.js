@@ -53,10 +53,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#101820",
   },
   title: {
+    backgroundColor: 'rgba(255,255,255,0.6)', // Semi-translucent black background
+    borderRadius: 5, 
+    paddingRight: 5, 
+    paddingLeft: 5,
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 5,
     marginTop: -80,
+    marginHorizontal: -50,
     textAlign: "center",
   },
   description: {
