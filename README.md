@@ -2,7 +2,11 @@
 
 Dreamland is our gateway to endless enchantment and creativity. Utilizing cutting-edge AI technology, Dreamland empowers parents to effortlessly generate captivating bedtime stories at the tap of a button. One of our focus is inclusivity and empowerment; we understand the importance of representation in media, and that's why Dreamland puts the ability to choose their protagonists that reflect each and every child's diverse backgrounds and unique identities in their hands!
 
-Devpost: https://devpost.com/software/dreamland-bxujv3
+
+# Demo Video
+
+[![DreamLand youtube demo](https://img.youtube.com/vi/ivjXhPyQPbI/0.jpg)](https://www.youtube.com/watch?v=ivjXhPyQPbI)
+
 
 # How we built it
 
@@ -30,6 +34,9 @@ REACT_APP_COHERE_API_KEY=...
 Dreamland uses `npm` for dependency management.
 
 Run `npm install` to install all dependencies locally
+
+
+Devpost: https://devpost.com/software/dreamland-bxujv3
 
 ## Run the app
 
